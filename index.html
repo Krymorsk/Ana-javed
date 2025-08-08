@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Ana, Our Love Story 💖</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to bottom, #ffe6eb, #fff);
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    header {
+        padding: 20px;
+        color: #ff4d6d;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    header h1 {
+        font-size: 2.5rem;
+        margin: 0;
+    }
+
+    header p {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .memory {
+        background: white;
+        margin: 20px auto;
+        padding: 15px;
+        border-radius: 15px;
+        max-width: 500px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        animation: fadeUp 1.5s ease-in-out;
+    }
+
+    .memory h2 {
+        font-size: 1.2rem;
+        color: #ff4d6d;
+        margin-bottom: 10px;
+    }
+
+    .memory-img {
+        max-width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .memory-img:hover {
+        transform: scale(1.03);
+    }
+
+    footer {
+        margin: 20px;
+        font-size: 1.1rem;
+        color: #ff4d6d;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    /* Floating Hearts */
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        color: rgba(255, 77, 109, 0.7);
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) translateX(0); opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>💖 Ana, Our Love Story 💖</h1>
+    <p>Since our first meeting, my heart has been yours.</p>
+</header>
+
+<section class="memory">
+    <h2>📅 May 10 — Phoenix United Mall</h2>
+    <img src="images/may10.jpg" alt="First Meet" class="memory-img">
+    <p>The day we first met, my heart skipped a beat.</p>
+</section>
+
+<section class="memory">
+    <h2>📅 June 3 — Shalimar Gateway Mall</h2>
+    <img src="images/june3.jpg" alt="Second Meet" class="memory-img">
+    <p>Another day, another beautiful chapter with you.</p>
+</section>
+
+<section class="memory">
+    <h2>📅 July 19 — Shalimar Gateway Mall</h2>
+    <img src="images/july19.jpg" alt="Third Meet" class="memory-img">
+    <p>By now, I knew... my heart belongs to you forever.</p>
+</section>
+
+<footer>
+    <p>With all my love, ❤️ Arish</p>
+</footer>
+
+<script>
+// Floating hearts effect
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+    heart.innerText = '💖';
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
