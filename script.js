@@ -29,9 +29,10 @@ function updateProgress() {
 function updateNav() {
   const sections = $$('main section[id]');
   const y = window.scrollY + window.innerHeight * 0.32;
+  const navMap = { home: 'story', gallery: 'moments' };
   let active = 'story';
   sections.forEach(section => {
-    if (y >= section.offsetTop) active = section.id;
+    if (y >= section.offsetTop) active = navMap[section.id] || section.id;
   });
   navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${active}`));
 }
@@ -214,8 +215,6 @@ $('#restartBtn').addEventListener('click', () => window.scrollTo({ top: 0, behav
 
 const audio = $('#audioPlayer');
 const defaultSong = 'our-song.mp3';
-audio.src = defaultSong;
-audio.load();
 const playBtn = $('#playBtn');
 const seekBar = $('#seekBar');
 const currentTime = $('#currentTime');
@@ -231,9 +230,10 @@ const miniTrack = $('#miniTrack');
 const miniState = $('#miniState');
 const miniDisc = $('#miniDisc');
 let selectedObjectUrl = null;
+let defaultSongFailed = false;
 
 function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) return '0:00';
+  if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
   return `${mins}:${secs}`;
@@ -245,17 +245,41 @@ function setPlayerVisibility(show) {
 }
 
 function setPlayingState(isPlaying) {
-  playBtn.textContent = isPlaying ? '❚❚' : '▶';
-  miniPlay.textContent = isPlaying ? '❚❚' : '▶';
-  miniState.textContent = isPlaying ? 'Now playing' : 'Paused';
+  const icon = isPlaying ? '❚❚' : '▶';
+  const label = isPlaying ? 'Pause our song' : 'Play our song';
+  playBtn.textContent = icon;
+  miniPlay.textContent = icon;
+  playBtn.setAttribute('aria-label', label);
+  miniPlay.setAttribute('aria-label', label);
+  miniState.textContent = isPlaying ? 'Now playing' : (audio.currentTime > 0 ? 'Paused' : 'Ready');
   musicArt.classList.toggle('playing', isPlaying);
   miniDisc.classList.toggle('playing', isPlaying);
 }
 
+function markDefaultSongReady() {
+  defaultSongFailed = false;
+  musicTrackName.textContent = 'our-song.mp3';
+  miniTrack.textContent = 'our-song.mp3';
+  musicHint.textContent = 'Your song is ready. Press play whenever you’re ready. 🎵';
+  setPlayerVisibility(true);
+}
+
+function markDefaultSongFailed() {
+  defaultSongFailed = true;
+  musicTrackName.textContent = 'our-song.mp3 not found';
+  miniTrack.textContent = 'Song not found';
+  musicHint.textContent = 'Put our-song.mp3 beside index.html, then refresh the page. 🎵';
+  setPlayerVisibility(false);
+  setPlayingState(false);
+}
+
 async function toggleMusic() {
-  if (!audio.currentSrc) {
-    showToast('our-song.mp3 could not be loaded. Make sure it is in the same folder as index.html. 🎵');
-    musicFile?.click();
+  if (!selectedObjectUrl && (defaultSongFailed || audio.error)) {
+    showToast('our-song.mp3 could not be loaded. Put it beside index.html and refresh. 🎵');
+    return;
+  }
+  if (!selectedObjectUrl && audio.readyState < HTMLMediaElement.HAVE_METADATA) {
+    showToast('The song is still loading. Try again in a moment. 🎵');
     return;
   }
   try {
@@ -265,24 +289,30 @@ async function toggleMusic() {
       audio.pause();
     }
   } catch {
-    showToast('The browser blocked playback. Tap play again.');
+    showToast('The browser could not start playback. Tap play again.');
   }
 }
 
 function useAudioFile(file) {
-  if (!file || !file.type.startsWith('audio/')) {
+  if (!file) return;
+  const looksAudio = file.type.startsWith('audio/') || /\.(mp3|wav|m4a|aac|ogg|oga|flac|webm)$/i.test(file.name);
+  if (!looksAudio) {
     showToast('Please choose an audio file. 🎵');
     return;
   }
   if (selectedObjectUrl) URL.revokeObjectURL(selectedObjectUrl);
   selectedObjectUrl = URL.createObjectURL(file);
+  defaultSongFailed = false;
   audio.src = selectedObjectUrl;
   audio.load();
   musicTrackName.textContent = file.name;
   miniTrack.textContent = file.name;
-  musicHint.innerHTML = 'Your song is loaded locally in this browser — nothing was uploaded. <span class="music-local-dot">●</span>';
+  musicHint.textContent = 'Your song is loaded locally in this browser — nothing was uploaded. ✨';
   setPlayerVisibility(true);
-  audio.play().catch(() => {});
+  audio.play().then(() => setPlayingState(true)).catch(() => {
+    setPlayingState(false);
+    showToast('The file loaded. Press play to start it. 🎵');
+  });
 }
 
 playBtn.addEventListener('click', toggleMusic);
@@ -292,44 +322,40 @@ musicFile.addEventListener('change', event => useAudioFile(event.target.files?.[
 
 audio.addEventListener('loadedmetadata', () => {
   duration.textContent = formatTime(audio.duration);
-  if (!selectedObjectUrl) {
-    musicTrackName.textContent = 'our-song.mp3';
-    miniTrack.textContent = 'our-song.mp3';
-    musicHint.innerHTML = "Your song is ready. Press play whenever you're ready. 🎵";
-  }
+  if (!selectedObjectUrl) markDefaultSongReady();
 });
 audio.addEventListener('canplay', () => {
+  if (!selectedObjectUrl) markDefaultSongReady();
   setPlayerVisibility(true);
-  if (!selectedObjectUrl) {
-    musicTrackName.textContent = 'our-song.mp3';
-    miniTrack.textContent = 'our-song.mp3';
-  }
 });
 audio.addEventListener('play', () => setPlayingState(true));
 audio.addEventListener('pause', () => setPlayingState(false));
 audio.addEventListener('timeupdate', () => {
   currentTime.textContent = formatTime(audio.currentTime);
-  seekBar.value = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+  seekBar.value = audio.duration ? String((audio.currentTime / audio.duration) * 100) : '0';
 });
 audio.addEventListener('ended', () => {
   setPlayingState(false);
-  seekBar.value = 0;
+  seekBar.value = '0';
   currentTime.textContent = '0:00';
 });
 audio.addEventListener('error', () => {
-  if (!selectedObjectUrl) {
-    musicTrackName.textContent = 'No song selected';
-    setPlayerVisibility(false);
+  if (!selectedObjectUrl) markDefaultSongFailed();
+  else {
+    setPlayingState(false);
+    showToast('The selected audio file could not be played. Please choose another file.');
   }
 });
 seekBar.addEventListener('input', () => {
-  if (audio.duration) audio.currentTime = (Number(seekBar.value) / 100) * audio.duration;
+  if (Number.isFinite(audio.duration) && audio.duration > 0) {
+    audio.currentTime = (Number(seekBar.value) / 100) * audio.duration;
+  }
 });
 
-if (audio.currentSrc && audio.readyState > 0) {
-  setPlayerVisibility(true);
-  miniTrack.textContent = 'Our little soundtrack';
-}
+musicTrackName.textContent = 'our-song.mp3';
+miniTrack.textContent = 'our-song.mp3';
+setPlayingState(false);
+audio.load();
 
 window.addEventListener('scroll', () => {
   updateProgress();

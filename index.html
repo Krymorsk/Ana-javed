@@ -203,9 +203,7 @@
           <p class="kicker">For the next chapter</p>
           <h2>Our little soundtrack.</h2>
           <p id="musicHint">Drop your song into <code>our-song.mp3</code>, or choose any audio file below. It stays right here in the browser.</p>
-          <audio id="audioPlayer" preload="metadata">
-            <source src="our-song.mp3" type="audio/mpeg" />
-          </audio>
+          <audio id="audioPlayer" preload="metadata" src="our-song.mp3"></audio>
           <div class="music-file-row">
             <button class="music-upload" id="musicUploadBtn" type="button">Choose a song <span>＋</span></button>
             <input id="musicFile" type="file" accept="audio/*" hidden />
