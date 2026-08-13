@@ -213,6 +213,9 @@ $('#secretTrigger').addEventListener('click', () => {
 $('#restartBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
 const audio = $('#audioPlayer');
+const defaultSong = 'our-song.mp3';
+audio.src = defaultSong;
+audio.load();
 const playBtn = $('#playBtn');
 const seekBar = $('#seekBar');
 const currentTime = $('#currentTime');
@@ -250,8 +253,8 @@ function setPlayingState(isPlaying) {
 }
 
 async function toggleMusic() {
-  if (!audio.src || audio.readyState === 0) {
-    showToast('Choose a song below, or add our-song.mp3. 🎵');
+  if (!audio.currentSrc) {
+    showToast('our-song.mp3 could not be loaded. Make sure it is in the same folder as index.html. 🎵');
     musicFile?.click();
     return;
   }
@@ -289,8 +292,19 @@ musicFile.addEventListener('change', event => useAudioFile(event.target.files?.[
 
 audio.addEventListener('loadedmetadata', () => {
   duration.textContent = formatTime(audio.duration);
+  if (!selectedObjectUrl) {
+    musicTrackName.textContent = 'our-song.mp3';
+    miniTrack.textContent = 'our-song.mp3';
+    musicHint.innerHTML = "Your song is ready. Press play whenever you're ready. 🎵";
+  }
 });
-audio.addEventListener('canplay', () => setPlayerVisibility(true));
+audio.addEventListener('canplay', () => {
+  setPlayerVisibility(true);
+  if (!selectedObjectUrl) {
+    musicTrackName.textContent = 'our-song.mp3';
+    miniTrack.textContent = 'our-song.mp3';
+  }
+});
 audio.addEventListener('play', () => setPlayingState(true));
 audio.addEventListener('pause', () => setPlayingState(false));
 audio.addEventListener('timeupdate', () => {
