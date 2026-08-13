@@ -1,31 +1,58 @@
-ANA & ARISH — LOVE STORY
-=========================
+ANA & ARISH — LOVE STORY SITE
+==============================
 
-Files
------
-index.html
-style.css
-script.js
+Flat-file GitHub Pages build.
 
-Existing photos
+Root files:
+  index.html
+  style.css
+  script.js
+  may11.jpg
+  june3.jpg
+  july19.jpg
+  our-song.mp3
+
+The page starts the relationship counter at:
+  May 10, 2025 (IST, +05:30)
+
+ADDING A MEMORY
 ---------------
-Keep these beside index.html on GitHub Pages:
-may11.jpg
-june3.jpg
-july19.jpg
+Edit MEMORY_DATA near the top of script.js and add one object with:
+  id, date, chapter, title, location, image, imageAlt, shortDate, text
 
-Music
------
-Option 1: add your own file as:
-our-song.mp3
+The timeline and gallery are generated from the same data automatically.
 
-Option 2: open the Music section and choose an audio file from your phone/PC.
-The chosen local file is played in the browser and is not uploaded anywhere.
+ADDING A SONG
+-------------
+Edit PLAYLIST near the top of script.js and add another object with:
+  id, title, artist, src, note
 
-Start date
+Place the new audio file beside index.html. The playlist, next/previous controls,
+durations, keyboard controls, and Media Session metadata will update automatically.
+
+DEFAULT MUSIC FILE
+------------------
+The included first playlist entry expects:
+  our-song.mp3
+
+The browser never autoplay music on page load. Playback starts from a user action.
+
+LOCAL MUSIC BUTTON
+------------------
+The "Choose a song from this device" control plays a local file in the current
+browser session. It is not uploaded anywhere by this website.
+
+KEYBOARD CONTROLS
+-----------------
+Space  Play / pause
+Left / Right  Seek 5 seconds
+Up / Down  Volume
+M  Mute / unmute
+[ / ]  Previous / next track
+?  Show music shortcuts
+Escape  Close the active dialog
+
+DEPLOYMENT
 ----------
-May 10, 2025
-
-GitHub Pages
-------------
-Upload the folder contents to the repository root (or the folder used by your Pages deployment).
+Put every file directly into the GitHub Pages repository root. There are no
+subfolders required by this build.

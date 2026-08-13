@@ -4,39 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0a0710" />
-  <meta name="description" content="A little digital love story for Ana — memories, moments, and everything in between." />
+  <meta name="description" content="Ana & Arish — a little digital love story of memories, moments, and the chapters still being written." />
+  <meta name="color-scheme" content="dark" />
+  <link rel="preload" as="image" href="may11.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="style.css" />
   <title>Ana & Arish — Our Little Love Story ❤️</title>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
   <div class="ambient" aria-hidden="true">
     <span class="orb orb-one"></span>
     <span class="orb orb-two"></span>
     <span class="orb orb-three"></span>
+    <span class="ambient-stars"></span>
   </div>
   <div class="grain" aria-hidden="true"></div>
 
   <header class="site-header" id="siteHeader">
-    <a class="brand" href="#home" aria-label="Ana and Arish">
-      <span class="brand-a">A</span><span class="brand-amp">&</span><span class="brand-a brand-a-bottom">A</span>
+    <a class="brand" href="#home" aria-label="Ana and Arish — home">
+      <span class="brand-top">A</span>
+      <span class="brand-amp">&amp;</span>
+      <span class="brand-bottom">A</span>
     </a>
-    <nav class="nav" aria-label="Main navigation">
+
+    <nav class="nav" id="primaryNav" aria-label="Main navigation">
       <a href="#story">Story</a>
       <a href="#moments">Moments</a>
       <a href="#reasons">Reasons</a>
       <a href="#letters">Letters</a>
-      <a href="#music">Music</a>
       <a href="#forever">Forever</a>
     </nav>
-    <button class="icon-btn" id="ambientHeartBtn" type="button" aria-label="Send a heart">♡</button>
+
+    <button class="icon-btn" id="ambientHeartBtn" type="button" aria-label="Send a little extra love">♡</button>
   </header>
 
-  <main>
-    <section class="hero section-shell" id="home">
+  <main id="main-content" tabindex="-1">
+    <section class="hero section-shell" id="home" aria-labelledby="heroTitle">
       <div class="hero-copy">
         <div class="eyebrow reveal">A little place for my favorite person ✦</div>
-        <h1 class="hero-title reveal reveal-delay-1">Ana <span>&</span> Arish</h1>
+        <h1 class="hero-title reveal reveal-delay-1" id="heroTitle">Ana <span>&amp;</span> Arish</h1>
         <p class="hero-subtitle reveal reveal-delay-2">
           Some stories are written in pages. Ours is written in little moments, quiet smiles,
           long conversations, and memories I never want to forget.
@@ -47,224 +55,219 @@
         </div>
         <div class="hero-meta reveal reveal-delay-4">
           <span>Since May 10, 2025</span>
-          <span class="dot"></span>
+          <span class="dot" aria-hidden="true"></span>
           <span>Still writing it</span>
         </div>
       </div>
-      <div class="hero-scroll" aria-hidden="true">
+      <a class="hero-scroll" href="#story" aria-label="Scroll to our story">
         <span>scroll to wander</span>
         <strong>⌄</strong>
-      </div>
+      </a>
     </section>
 
-    <section class="intro section-shell" id="story">
+    <section class="intro section-shell" id="story" aria-labelledby="storyTitle">
       <div class="section-heading reveal">
         <p class="kicker">Chapter one</p>
-        <h2>Three dates.<br /><em>A thousand feelings.</em></h2>
-        <p class="section-lede">These are only a few pages from our story. The best part is knowing there are still so many more to write.</p>
+        <h2 id="storyTitle">Three dates.<br /><em>A thousand feelings.</em></h2>
+        <p class="section-lede">A few pages from our story. The best part is knowing there are still so many more to write.</p>
       </div>
 
-      <div class="counter-card reveal">
+      <div class="counter-card reveal" aria-label="Time since May 10, 2025">
         <div>
           <p class="counter-label">Time since the beginning</p>
           <div class="counter-number" id="daysTogether">0</div>
           <p class="counter-caption">days of one little story becoming something much bigger.</p>
         </div>
-        <div class="counter-clock" aria-live="polite">
+        <div class="counter-clock" aria-live="polite" aria-atomic="true">
           <div><span id="counterHours">00</span><small>hours</small></div>
           <div><span id="counterMinutes">00</span><small>minutes</small></div>
           <div><span id="counterSeconds">00</span><small>seconds</small></div>
         </div>
       </div>
-    </section>
 
-    <section class="timeline-section section-shell" id="moments">
-      <div class="timeline" id="timeline">
-        <article class="memory-card reveal" data-gallery="may11.jpg" data-caption="May 10, 2025 · Phoenix United Mall">
-          <div class="memory-photo">
-            <img src="may11.jpg" alt="Our first meeting" loading="lazy" />
-            <button class="photo-open" type="button" aria-label="Open first memory">View memory ↗</button>
-          </div>
-          <div class="memory-copy">
-            <p class="date">May 10, 2025 · Chapter 01</p>
-            <h3>The beginning.</h3>
-            <p class="place">📍 Phoenix United Mall</p>
-            <p>Maybe neither of us knew how important that little moment would become. But somehow, my heart noticed.</p>
-            <span class="chapter-no">01</span>
-          </div>
-        </article>
-
-        <article class="memory-card memory-reverse reveal" data-gallery="june3.jpg" data-caption="June 3, 2025 · Shalimar Gateway Mall">
-          <div class="memory-photo">
-            <img src="june3.jpg" alt="Our second meeting" loading="lazy" />
-            <button class="photo-open" type="button" aria-label="Open second memory">View memory ↗</button>
-          </div>
-          <div class="memory-copy">
-            <p class="date">June 3, 2025 · Chapter 02</p>
-            <h3>A little closer.</h3>
-            <p class="place">📍 Shalimar Gateway Mall</p>
-            <p>Another day together, another beautiful chapter. The kind of day that makes ordinary places feel special simply because you're there.</p>
-            <span class="chapter-no">02</span>
-          </div>
-        </article>
-
-        <article class="memory-card reveal" data-gallery="july19.jpg" data-caption="July 19, 2025 · Shalimar Gateway Mall">
-          <div class="memory-photo">
-            <img src="july19.jpg" alt="Our third meeting" loading="lazy" />
-            <button class="photo-open" type="button" aria-label="Open third memory">View memory ↗</button>
-          </div>
-          <div class="memory-copy">
-            <p class="date">July 19, 2025 · Chapter 03</p>
-            <h3>My favorite chapter.</h3>
-            <p class="place">📍 Shalimar Gateway Mall</p>
-            <p>By now, I knew. Somewhere between all the conversations and little moments, my heart had quietly chosen you.</p>
-            <span class="chapter-no">03</span>
-          </div>
-        </article>
+      <div class="story-stats reveal" aria-label="Story statistics">
+        <div><strong id="memoryCount">0</strong><span>memories</span></div>
+        <div><strong id="chapterCount">0</strong><span>chapters</span></div>
+        <div><strong id="storyYears">0</strong><span>year(s) written</span></div>
       </div>
     </section>
 
-    <section class="quote-section section-shell reveal">
+    <section class="timeline-section section-shell" id="moments" aria-labelledby="momentsTitle">
+      <div class="section-heading reveal section-heading-inline">
+        <div>
+          <p class="kicker">The chapters</p>
+          <h2 id="momentsTitle">Our <em>moments.</em></h2>
+        </div>
+        <p class="section-lede">Every new memory can be added in one place. The timeline and gallery build themselves from the same story data.</p>
+      </div>
+      <div class="timeline" id="timeline" aria-live="polite"></div>
+    </section>
+
+    <section class="quote-section section-shell reveal" aria-label="Love note">
       <p class="quote">The sweetest part of our story is that it is still being written.</p>
       <span>— for Ana, with love</span>
     </section>
 
-    <section class="reasons section-shell" id="reasons">
+    <section class="reasons section-shell" id="reasons" aria-labelledby="reasonsTitle">
       <div class="section-heading reveal">
         <p class="kicker">Little things</p>
-        <h2>Reasons I <em>choose you.</em></h2>
+        <h2 id="reasonsTitle">Reasons I <em>choose you.</em></h2>
         <p class="section-lede">Not a complete list. Probably not even close.</p>
       </div>
-      <div class="reason-grid">
-        <button class="reason-card reveal" type="button"><span>01</span><strong>Your smile.</strong><em>It changes the whole mood of a room.</em></button>
-        <button class="reason-card reveal reveal-delay-1" type="button"><span>02</span><strong>The way you care.</strong><em>Even in the tiniest little ways.</em></button>
-        <button class="reason-card reveal reveal-delay-2" type="button"><span>03</span><strong>Your little habits.</strong><em>The details nobody else notices.</em></button>
-        <button class="reason-card reveal reveal-delay-3" type="button"><span>04</span><strong>How you feel like home.</strong><em>The easiest place to be myself.</em></button>
-      </div>
+      <div class="reason-grid" id="reasonGrid"></div>
       <p class="reason-note" id="reasonNote" aria-live="polite">Tap one. I left a little note inside. 💌</p>
     </section>
 
-    <section class="letters section-shell" id="letters">
+    <section class="letters section-shell" id="letters" aria-labelledby="lettersTitle">
       <div class="section-heading reveal">
         <p class="kicker">For different days</p>
-        <h2>Open <em>when...</em></h2>
+        <h2 id="lettersTitle">Open <em>when...</em></h2>
         <p class="section-lede">Little messages for the moments when you need them.</p>
       </div>
-      <div class="letter-grid">
-        <button class="letter-card reveal" type="button" data-letter="sad">
-          <span class="envelope">✉</span>
-          <strong>you're sad</strong>
-          <small>open gently</small>
-        </button>
-        <button class="letter-card reveal reveal-delay-1" type="button" data-letter="miss">
-          <span class="envelope">♡</span>
-          <strong>you miss me</strong>
-          <small>open anytime</small>
-        </button>
-        <button class="letter-card reveal reveal-delay-2" type="button" data-letter="sleep">
-          <span class="envelope">☾</span>
-          <strong>you can't sleep</strong>
-          <small>one quiet thought</small>
-        </button>
-        <button class="letter-card reveal reveal-delay-3" type="button" data-letter="smile">
-          <span class="envelope">✦</span>
-          <strong>you need a smile</strong>
-          <small>this one is silly</small>
-        </button>
-      </div>
+      <div class="letter-grid" id="letterGrid"></div>
     </section>
 
-    <section class="gallery section-shell" id="gallery">
-      <div class="section-heading reveal">
-        <p class="kicker">A few frames</p>
-        <h2>Our <em>moments.</em></h2>
-        <p class="section-lede">Every picture gets a little bigger when the memory behind it is yours.</p>
+    <section class="gallery section-shell" id="gallery" aria-labelledby="galleryTitle">
+      <div class="section-heading reveal section-heading-inline">
+        <div>
+          <p class="kicker">A few frames</p>
+          <h2 id="galleryTitle">Our <em>gallery.</em></h2>
+        </div>
+        <p class="section-lede">The same memories, seen a little differently.</p>
       </div>
-      <div class="gallery-grid">
-        <button class="gallery-item gallery-tall reveal" type="button" data-gallery="may11.jpg" data-caption="May 10, 2025 · The beginning">
-          <img src="may11.jpg" alt="May 10 memory" loading="lazy" />
-          <span>May 10</span>
-        </button>
-        <button class="gallery-item reveal reveal-delay-1" type="button" data-gallery="june3.jpg" data-caption="June 3, 2025 · A little closer">
-          <img src="june3.jpg" alt="June 3 memory" loading="lazy" />
-          <span>June 3</span>
-        </button>
-        <button class="gallery-item reveal reveal-delay-2" type="button" data-gallery="july19.jpg" data-caption="July 19, 2025 · My favorite chapter">
-          <img src="july19.jpg" alt="July 19 memory" loading="lazy" />
-          <span>July 19</span>
-        </button>
-      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
     </section>
 
-    <section class="music section-shell reveal" id="music">
+  <div class="modal music-modal" id="musicModal" role="dialog" aria-modal="true" aria-labelledby="musicTitle" aria-describedby="musicDescription" aria-hidden="true">
+    <div class="music-modal-card">
+      <button class="modal-close" id="musicModalClose" type="button" aria-label="Close music player">×</button>
       <div class="music-card">
-        <div class="music-art" id="musicArt" aria-hidden="true"><span>♫</span></div>
+        <div class="music-visual">
+          <div class="music-art" id="musicArt" aria-hidden="true"><span>♫</span></div>
+          <span class="music-live-badge" id="musicLiveBadge">READY</span>
+        </div>
+
         <div class="music-copy">
           <p class="kicker">For the next chapter</p>
-          <h2>Our little soundtrack.</h2>
-          <p id="musicHint">Drop your song into <code>our-song.mp3</code>, or choose any audio file below. It stays right here in the browser.</p>
-          <audio id="audioPlayer" preload="metadata" src="our-song.mp3"></audio>
-          <div class="music-file-row">
-            <button class="music-upload" id="musicUploadBtn" type="button">Choose a song <span>＋</span></button>
-            <input id="musicFile" type="file" accept="audio/*" hidden />
-            <span class="music-track-name" id="musicTrackName">No song selected</span>
+          <h2 id="musicTitle">Our little soundtrack.</h2>
+          <p class="music-description" id="musicDescription">A playlist that can grow with us. Add another track later by adding one item to the playlist configuration in <code>script.js</code>.</p>
+
+          <div class="track-summary">
+            <div class="track-main">
+              <strong id="trackTitle">Our Song</strong>
+              <span id="trackArtist">Ana &amp; Arish</span>
+            </div>
+            <span class="track-index" id="trackIndex" aria-label="Current track">1 / 1</span>
           </div>
-          <div class="music-controls">
-            <button class="icon-btn large music-play" id="playBtn" type="button" aria-label="Play our song">▶</button>
-            <div class="music-progress-wrap">
-              <div class="music-time"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
-              <input id="seekBar" type="range" min="0" max="100" value="0" aria-label="Song progress" />
+
+          <div class="progress-control">
+            <label class="sr-only" for="seekBar">Track progress</label>
+            <input id="seekBar" type="range" min="0" max="100" step="0.1" value="0" />
+            <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
+          </div>
+
+          <div class="music-controls" aria-label="Music controls">
+            <button class="player-button player-button-secondary" id="prevBtn" type="button" aria-label="Previous track">⏮</button>
+            <button class="player-button player-button-primary" id="playBtn" type="button" aria-label="Play track">▶</button>
+            <button class="player-button player-button-secondary" id="nextBtn" type="button" aria-label="Next track">⏭</button>
+            <button class="player-button player-button-secondary" id="muteBtn" type="button" aria-label="Mute audio">🔊</button>
+            <div class="volume-control">
+              <label class="sr-only" for="volumeBar">Volume</label>
+              <input id="volumeBar" type="range" min="0" max="1" step="0.01" value="0.8" />
             </div>
           </div>
-          <p class="music-tip">Tip: on your phone, pick a song from Files and it will play on this page without uploading it anywhere. ✨</p>
+
+          <div class="music-status-row">
+            <span id="musicStatus" role="status" aria-live="polite">Ready to play</span>
+            <span class="keyboard-hint">Space Play · ← → Seek · M Mute · [ ] Track</span>
+          </div>
+
+          <div class="playlist" aria-labelledby="playlistTitle">
+            <div class="playlist-header">
+              <span id="playlistTitle">Playlist</span>
+              <span id="playlistCount">1 track</span>
+            </div>
+            <div class="playlist-list" id="playlistList"></div>
+          </div>
+
+          <div class="music-file-row">
+            <button class="music-upload" id="musicUploadBtn" type="button">Choose a song from this device</button>
+            <input id="musicFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.oga,.flac,.webm" hidden />
+            <span class="music-file-note" id="musicFileNote">The website's default track is <strong>our-song.mp3</strong>.</span>
+          </div>
         </div>
       </div>
-    </section>
+      <audio id="audioPlayer" preload="metadata"></audio>
+    </div>
+  </div>
 
-    <section class="closing section-shell" id="forever">
+    <section class="closing section-shell" id="forever" aria-labelledby="foreverTitle">
       <div class="closing-card reveal">
-        <p class="kicker">The next chapter</p>
-        <h2>To many more<br /><em>memories.</em></h2>
-        <p>Three dates became three chapters. Three chapters became a story. And I hope this little story keeps getting longer — one laugh, one hug, one adventure, and one beautiful day at a time.</p>
+        <p class="kicker">The part that matters most</p>
+        <h2 id="foreverTitle">Still writing it.</h2>
+        <p>There are memories here already, and a whole future waiting underneath them. Whatever the next chapter looks like, I want it to have you in it.</p>
         <div class="signature">With all my love, Arish ❤️</div>
-        <button class="text-btn" id="restartBtn" type="button">Start from the beginning ↺</button>
+        <button class="text-btn" id="restartBtn" type="button">Back to the beginning ↺</button>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>Made with a ridiculous amount of love ✦ for Ana</span>
-    <button class="secret-trigger" id="secretTrigger" type="button" aria-label="A tiny secret">♥</button>
+    Made with too much love, on purpose. <button class="secret-trigger" id="secretTrigger" type="button" aria-label="A tiny secret">✦</button>
   </footer>
 
-  <div class="modal" id="imageModal" aria-hidden="true">
-    <div class="modal-inner" role="dialog" aria-modal="true" aria-label="Memory viewer">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Close">✕</button>
-      <img id="modalImage" src="" alt="" />
-      <div class="modal-caption" id="modalCaption"></div>
+  <div class="mini-player" id="miniPlayer" aria-hidden="true">
+    <button class="mini-open" id="miniOpen" type="button" aria-label="Open music player">
+      <span class="mini-disc" id="miniDisc" aria-hidden="true">♫</span>
+      <span class="mini-copy">
+        <strong id="miniTrack">Our Song</strong>
+        <span id="miniState">Ready</span>
+        <span class="mini-progress" aria-hidden="true"><i id="miniProgressBar"></i></span>
+      </span>
+    </button>
+    <button class="mini-play" id="miniPlay" type="button" aria-label="Play track">▶</button>
+  </div>
+
+  <div class="modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalCaption" aria-hidden="true">
+    <div class="modal-inner image-modal-inner">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close photo viewer">×</button>
+      <button class="modal-nav modal-prev" id="modalPrev" type="button" aria-label="Previous memory">‹</button>
+      <figure class="modal-figure">
+        <img id="modalImage" alt="" />
+        <figcaption class="modal-caption" id="modalCaption"></figcaption>
+      </figure>
+      <button class="modal-nav modal-next" id="modalNext" type="button" aria-label="Next memory">›</button>
     </div>
   </div>
 
-  <div class="modal letter-modal" id="letterModal" aria-hidden="true">
-    <div class="letter-modal-card" role="dialog" aria-modal="true" aria-label="Letter">
-      <button class="modal-close" id="letterClose" type="button" aria-label="Close">✕</button>
-      <p class="kicker">A little note for you</p>
+  <div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="letterTitle" aria-describedby="letterBody" aria-hidden="true">
+    <div class="letter-modal-card">
+      <button class="modal-close" id="letterClose" type="button" aria-label="Close letter">×</button>
+      <p class="kicker">Open gently</p>
       <h2 id="letterTitle"></h2>
       <p id="letterBody"></p>
-      <span class="signature">— Arish</span>
+      <button class="btn btn-ghost letter-close-action" id="letterCloseAction" type="button">Keep this one close ♡</button>
     </div>
   </div>
 
-  <div class="mini-player" id="miniPlayer" aria-hidden="true">
-    <div class="mini-disc" id="miniDisc">♫</div>
-    <div class="mini-copy">
-      <strong id="miniTrack">Our little soundtrack</strong>
-      <span id="miniState">Paused</span>
+  <div class="modal" id="shortcutModal" role="dialog" aria-modal="true" aria-labelledby="shortcutTitle" aria-hidden="true">
+    <div class="letter-modal-card shortcut-card">
+      <button class="modal-close" id="shortcutClose" type="button" aria-label="Close keyboard shortcuts">×</button>
+      <p class="kicker">Keyboard controls</p>
+      <h2 id="shortcutTitle">Music shortcuts</h2>
+      <div class="shortcut-list">
+        <div><kbd>Space</kbd><span>Play / pause</span></div>
+        <div><kbd>←</kbd><kbd>→</kbd><span>Seek 5 seconds</span></div>
+        <div><kbd>↑</kbd><kbd>↓</kbd><span>Volume</span></div>
+        <div><kbd>M</kbd><span>Mute / unmute</span></div>
+        <div><kbd>[</kbd><kbd>]</kbd><span>Previous / next track</span></div>
+        <div><kbd>?</kbd><span>Show shortcuts</span></div>
+      </div>
     </div>
-    <button class="mini-play" id="miniPlay" type="button" aria-label="Play music">▶</button>
   </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
